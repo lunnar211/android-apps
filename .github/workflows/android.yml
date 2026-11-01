@@ -5,6 +5,9 @@ name: Build Android APKs
 # Debug APKs install directly on a phone (allow "install unknown
 # apps" once). A Play Store release build needs a signing keystore
 # later — see the root README; never commit a keystore here.
+# NOTE: no setup-android step on purpose — ubuntu-latest runners
+# already ship the Android SDK, and setup-android@v3 fails asking
+# for the long-removed "tools" SDK package.
 
 permissions:
   contents: write
@@ -20,6 +23,7 @@ jobs:
     name: Build ${{ matrix.app }}
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         app: [leadsforcegen, pdf-tools-hub, ai-studio]
     steps:
@@ -28,7 +32,6 @@ jobs:
         with:
           distribution: temurin
           java-version: "17"
-      - uses: android-actions/setup-android@v3
       - name: Build debug APK
         working-directory: apps/${{ matrix.app }}
         run: |
