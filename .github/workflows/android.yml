@@ -8,6 +8,9 @@ name: Build Android APKs
 # NOTE: no setup-android step on purpose — ubuntu-latest runners
 # already ship the Android SDK, and setup-android@v3 fails asking
 # for the long-removed "tools" SDK package.
+# NOTE: Gradle must run from the android/ folder — that folder
+# holds settings.gradle, so running gradlew from the app folder
+# fails with "does not contain a Gradle build".
 
 permissions:
   contents: write
@@ -33,10 +36,10 @@ jobs:
           distribution: temurin
           java-version: "17"
       - name: Build debug APK
-        working-directory: apps/${{ matrix.app }}
+        working-directory: apps/${{ matrix.app }}/android
         run: |
-          chmod +x android/gradlew
-          android/gradlew :app:assembleDebug --no-daemon
+          chmod +x gradlew
+          ./gradlew :app:assembleDebug --no-daemon
       - uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.app }}-apk
