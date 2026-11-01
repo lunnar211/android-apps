@@ -1,0 +1,9 @@
+{
+  "appId": "com.aistudio.app",
+  "appName": "AI Studio",
+  "webDir": "www",
+  "server": {
+    "url": "https://ai-studio-sandy-sigma.vercel.app",
+    "androidScheme": "https"
+  }
+}

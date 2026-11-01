@@ -1,0 +1,9 @@
+{
+  "appId": "com.leadsforcegen.app",
+  "appName": "LeadsForceGen",
+  "webDir": "www",
+  "server": {
+    "url": "https://leadsforcegen.vercel.app",
+    "androidScheme": "https"
+  }
+}

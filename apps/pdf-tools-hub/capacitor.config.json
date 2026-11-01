@@ -1,0 +1,9 @@
+{
+  "appId": "com.pdftoolshub.app",
+  "appName": "PDF Tools Hub",
+  "webDir": "www",
+  "server": {
+    "url": "https://pdf-tools-hub-nine-lac.vercel.app",
+    "androidScheme": "https"
+  }
+}
